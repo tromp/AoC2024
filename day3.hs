@@ -13,9 +13,7 @@ go :: Int -> Bool -> String -> Int
 go m _ [] = m
 go m _ ('d':'o':'(':')':s) = go m True s
 go m _ ('d':'o':'n':'\'':'t':'(':')':s) = go m False s
-go m True ('m':'u':'l':s) = go m True s + case reads s of
-  [((x,y),_)]   -> x * y
-  otherwise -> 0
+go m True s@(_:s') = getmul s + go m True s'
 go m b (_:s) = go m b s
 
 part2 :: String -> Int
