@@ -18,7 +18,7 @@ xs = [[(x,y),(x,y+2),(x+1,y+1),(x+2,y),(x+2,y+2)] | x <- [0..n-3], y<-[0..n-3]]
 
 part2 :: Array (Int,Int) Char -> Int
 part2 ar = length . filter (crossmas . map (ar!)) $ xs where
-  crossmas ([xy,xy2,'A',x2y,x2y2]) = sort [xy,x2y2] ++ sort [x2y,xy2] == "MSMS"
+  crossmas ([xy,xy2,'A',x2y,x2y2]) = all ((== "MS") . sort) [[xy,x2y2], [x2y,xy2]]
   crossmas _ = False
 
 main = getContents >>= print . process part2
