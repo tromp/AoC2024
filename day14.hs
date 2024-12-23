@@ -8,8 +8,7 @@ import CRT
 (w2, h2) = (w`div`2, h`div`2)
 
 readBot s = ((x0,y0),(vx,vy)) where
-  [_,x0_,y0_,_,vx_,vy_] = splitOneOf "=, " s
-  [x0,y0,vx,vy] = map read [x0_,y0_,vx_,vy_]
+  [_,x0,y0,_,vx,vy] = map read . splitOneOf "=, " $ s
 
 step i ((x0,y0),(vx,vy)) = ((x0 + i*vx) `mod` w, (y0 + i*vy) `mod` h)
 
